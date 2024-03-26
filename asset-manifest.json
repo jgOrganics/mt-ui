@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/mt-ui/static/css/main.f855e6bc.css",
+    "main.js": "/mt-ui/static/js/main.56c0d8a2.js",
+    "static/js/239.b8c7d8ee.chunk.js": "/mt-ui/static/js/239.b8c7d8ee.chunk.js",
+    "static/js/213.859257f0.chunk.js": "/mt-ui/static/js/213.859257f0.chunk.js",
+    "static/js/455.05ff1de3.chunk.js": "/mt-ui/static/js/455.05ff1de3.chunk.js",
+    "static/js/453.aa861388.chunk.js": "/mt-ui/static/js/453.aa861388.chunk.js",
+    "index.html": "/mt-ui/index.html",
+    "main.f855e6bc.css.map": "/mt-ui/static/css/main.f855e6bc.css.map",
+    "main.56c0d8a2.js.map": "/mt-ui/static/js/main.56c0d8a2.js.map",
+    "239.b8c7d8ee.chunk.js.map": "/mt-ui/static/js/239.b8c7d8ee.chunk.js.map",
+    "213.859257f0.chunk.js.map": "/mt-ui/static/js/213.859257f0.chunk.js.map",
+    "455.05ff1de3.chunk.js.map": "/mt-ui/static/js/455.05ff1de3.chunk.js.map",
+    "453.aa861388.chunk.js.map": "/mt-ui/static/js/453.aa861388.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.56c0d8a2.js"
+  ]
+}
