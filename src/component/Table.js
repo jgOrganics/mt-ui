@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import { forwardRef } from 'react';
-import MaterialTable, { MTableToolbar } from "material-table";
+import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -19,28 +18,73 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios'
 import { Alert, TextField } from '@mui/material';
-const tableIcons = {
-
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
+// import { Group } from '@material-ui/icons';
+import GroupIcon from '@mui/icons-material/Group';
+import { useTheme } from '../contexts/ThemeContext';
+import ToggleThemeButton from './Toggle';
 
 function Table() {
+    const { darkMode } = useTheme();
+    // const [showTextFields, setShowTextFields] = useState(false); // state to control the visibility of text fields
+
+    const tableIcons = {
+
+        Add: forwardRef((props, ref) => <AddBox
+            {...props}
+            ref={ref}
+            style={{ color: darkMode ? '#fff' : '#222', }}
+        />
+        ),
+        Check: forwardRef((props, ref) => <Check
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Clear: forwardRef((props, ref) => <Clear
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Delete: forwardRef((props, ref) => <DeleteOutline
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        DetailPanel: forwardRef((props, ref) => <ChevronRight
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Edit: forwardRef((props, ref) => <Edit
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Export: forwardRef((props, ref) => <SaveAlt
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Filter: forwardRef((props, ref) => <FilterList
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        FirstPage: forwardRef((props, ref) => <FirstPage
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        LastPage: forwardRef((props, ref) => <LastPage
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        NextPage: forwardRef((props, ref) => <ChevronRight
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        PreviousPage: forwardRef((props, ref) => <ChevronLeft
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        ResetSearch: forwardRef((props, ref) => <Clear
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        Search: forwardRef((props, ref) => <Search
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        SortArrow: forwardRef((props, ref) => <ArrowDownward
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        ThirdStateCheck: forwardRef((props, ref) => <Remove
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn
+            style={{ color: darkMode ? '#fff' : '#222', }}
+            {...props} ref={ref} />)
+    };
 
     var columns = [
         { title: "id", field: "id", hidden: true, editable: false },
@@ -50,23 +94,61 @@ function Table() {
             render: rowData => (
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <img
-                    style={{ height: 36, borderRadius: '50%' }}
+                    style={{
+                        height: 36, borderRadius: '50%'
+
+                    }}
                     src={rowData.avatar}
                 />
             ),
+            headerStyle: {
+                color: darkMode ? '#fff' : '#222',
+            },
+            cellStyle: {
+                color: darkMode ? '#fff' : '#222',
+            }
         },
         {
-            title: "Name", field: "name"
+            title: "Name", field: "name",
+            headerStyle: {
+                color: darkMode ? '#fff' : '#222',
+            },
+            cellStyle: {
+                color: darkMode ? '#fff' : '#222',
+            }
+
         },
-        { title: "Email", field: "email" },
+        {
+            title: "Email", field: "email",
+            headerStyle: {
+                color: darkMode ? '#fff' : '#222',
+            },
+            cellStyle: {
+                color: darkMode ? '#fff' : '#222',
+            }
+        },
         {
             title: "Role", field: "role",
             lookup: {
                 'admin': 'admin',
                 'customer': 'customer',
+            },
+            headerStyle: {
+                color: darkMode ? '#fff' : '#222',
+            },
+            cellStyle: {
+                color: darkMode ? '#fff' : '#222',
             }
         },
-        { title: "Password", field: "password" },
+        {
+            title: "Password", field: "password",
+            headerStyle: {
+                color: darkMode ? '#fff' : '#222',
+            },
+            cellStyle: {
+                color: darkMode ? '#fff' : '#222',
+            }
+        },
     ]
 
     const [data, setData] = useState([]); //table data
@@ -97,8 +179,9 @@ function Table() {
         return re.test(email);
     }
 
-    const [iserror, setIserror] = useState(false)
-    const [errorMessages, setErrorMessages] = useState([])
+    const [iserror, setIserror] = useState(false);
+    const [errorMessages, setErrorMessages] = useState([]);
+    const [isEditClicked, setIsEditClicked] = useState(false); // state to track whether edit button is clicked or not
 
     useEffect(() => {
         api.get("/users")
@@ -213,105 +296,177 @@ function Table() {
         item.email.toLowerCase().includes(searchText.toLowerCase()) ||
         item.role.toLowerCase().includes(searchText.toLowerCase())
     ) : data;
-    
+
+    const tableStyles = {
+        backgroundColor: darkMode ? '#222' : '#fff',
+        color: darkMode ? '#fff' : '#222',
+    };
     return (
-        <div className="App" style={{ marginTop: "60px" }}>
-            <h2 style={{ textAlign: "center" }}>
-                Users Details
-            </h2>
-            <div>
-                {iserror &&
-                    <Alert severity="error">
-                        {errorMessages.map((msg, i) => {
-                            return <div key={i}>{msg}</div>
-                        })}
-                    </Alert>
-                }
-                <div style={{ marginLeft: "1250px" }}>
+        <Box style={{ backgroundColor: darkMode ? '#222' : '#fff', color: darkMode ? '#fff' : '#222' }}>
+            <AppBar position="fixed"
+                style={{
+                    height: 75,
+                    borderColor: darkMode ? '#fff' : 'skyblue',
+                    borderBottomWidth: 1,
+                    backgroundColor: darkMode ? '#222' : 'skyblue',
+                    color: darkMode ? '#222' : '#fff'
+                }}
+                variant='outlined'
+            >
+                <Toolbar >
+                    <GroupIcon
+                        style={{
+                            height: 50,
+                            width: 50,
+                            color: darkMode ? '#fff' : '#222'
+                        }}
+                    />
+                    <Typography
+                        style={{
+                            marginLeft: 10,
+                            color: darkMode ? '#fff' : '#222'
+                        }}>
+                        USERS
+                    </Typography>
+
                     <TextField
                         label="Search"
                         variant="outlined"
                         value={searchText}
                         onChange={handleSearchChange}
-                        style={{ marginBottom: '10px' }}
+                        sx={{ width: '300px' }}
+                        InputLabelProps={{ style: { color: darkMode ? '#fff' : '#222' } }} // Set label color here
+
+                        style={{
+                            borderColor: darkMode ? '#fff' : '#222',
+                            color: darkMode ? '#fff' : '#222',
+                            marginTop: '10px', marginLeft: "1000px",
+                        }}
                     />
+                    <IconButton
+                        style={{
+                            marginTop: 10
+                        }}
+                    >
+                        <Button
+                            style={{
+                                color: darkMode ? '#fff' : '#222'
+                            }}
+                            variant='outlined'
+                            size='25px'
+                        >Login</Button>
+                    </IconButton>
+                    <IconButton
+                        style={{
+                            marginTop: 10
+                        }}
+                    // onClick={{  }}
+                    >
+                        {/* <IconButton onClick={toggleThemeMode} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
+                            {themeMode === 'light' ? <DarkIcon /> : <LightIcon />}
+                        </IconButton> */}
+
+                    </IconButton>
+                    <ToggleThemeButton />
+                </Toolbar>
+            </AppBar>
+            <Box style={{ marginTop: "75px", backgroundColor: darkMode ? '#222' : '#fff', color: darkMode ? '#fff' : '#222' }}>
+                <div>
+                    {iserror &&
+                        <Alert severity="error">
+                            {errorMessages.map((msg, i) => {
+                                return <div key={i}>{msg}</div>
+                            })}
+                        </Alert>
+                    }
+
                 </div>
-            </div>
+                <MaterialTable
+                    style={tableStyles}
+                    mt={90}
+                    title="Users Details"
+                    columns={columns}
+                    // data={data}
+                    data={filteredData}
+                    icons={tableIcons}
+                    options={{
+                        selection: true,
+                        columnsButton: true,
+                        draggable: true,
+                        grouping: false,
+                        sorting: true,
+                        search: false,
+                        paging: true,
+                        pageSizeOptions: [5, 10, 20, 25, 50, 75, 100],
+                        paginationPosition: "both",
+                        exportButton: true,
+                        exportAllData: true,
+                        exportFileName: "Users Data",
+                        filtering: true,
+                        searchFieldAlignment: "right",
+                        searchAutoFocus: true,
+                        searchFieldVariant: "outlined",
+                        actionsColumnIndex: -1,
+                        addRowPosition: "first",
+                        toolbar: true,
+                        headerStyle: {
+                            fontStyle: "italic",
+                            backgroundColor: darkMode ? '#222' : 'lightblue',
+                            color: darkMode ? 'lightblue' : '#222',
 
-            <MaterialTable
-                mt={90}
-                title="Users Details"
-                columns={columns}
-                // data={data}
-                data={filteredData}
-                icons={tableIcons}
-                options={{
-                    selection: true,
-                    columnsButton: true,
-                    draggable: true,
-                    grouping: false,
-                    sorting: true,
-                    search: false,
-                    paging: true,
-                    pageSizeOptions: [5, 10, 20, 25, 50, 75, 100],
-                    paginationPosition: "both",
-                    exportButton: true,
-                    exportAllData: true,
-                    exportFileName: "Users Data",
-                    filtering: true,
-                    searchFieldAlignment: "right",
-                    searchAutoFocus: true,
-                    searchFieldVariant: "outlined",
-                    actionsColumnIndex: -1,
-                    addRowPosition: "first",
-                    toolbar: true,
-                    headerStyle: {
-                        // size: '150px',
-                        fontStyle: "italic", backgroundColor: "skyblue"
+                        },
 
-                    },
+                    }}
+                    // cellEditable={{
+                    //     onCellEditApproved: async (newData, oldData, rowData, columnDef) => {
+                    //         return new Promise((resolve, reject) => {
+                    //             const updatedRow = { ...rowData, [columnDef.field]: newData };
+                    //             console.log(updatedRow);
+                    //             axios.put(`${api}${updatedRow.id}`, updatedRow)
+                    //                 .then(() => {
+                    //                     // resolve()
+                    //                     setTimeout(() => {
+                    //                         setData(data.map(row => (row.id === updatedRow.id ? updatedRow : row)));
+                    //                         // fetchData();
+                    //                         resolve();
+                    //                     }, 2000);
+                    //                 })
+                    //                 .catch(error => {
+                    //                     console.error('Error updating users:', error);
+                    //                     reject();
+                    //                 });
+                    //         });
+                    //     }
+                    // }}
+                    editable={{
+                        onRowUpdate: (newData, oldData) =>
+                            new Promise((resolve) => {
+                                handleRowUpdate(newData, oldData, resolve);
 
-                }}
+                            }),
+                        onRowAdd: (newData) =>
+                            new Promise((resolve) => {
+                                handleRowAdd(newData, resolve)
+                            }),
+                        onRowDelete: (oldData) =>
+                            new Promise((resolve) => {
+                                handleRowDelete(oldData, resolve)
+                            }),
+                    }}
+                    actions={[
+                        {
+                            icon: Edit,
+                            tooltip: 'Edit User',
+                            onClick: (event, rowData) => {
+                                setIsEditClicked(!isEditClicked);
+                            }
+                        }
+                    ]}
+                />
+            </Box>
 
-                // cellEditable={{
-                //     onCellEditApproved: async (newData, oldData, rowData, columnDef) => {
-                //         return new Promise((resolve, reject) => {
-                //             const updatedRow = { ...rowData, [columnDef.field]: newData };
-                //             console.log(updatedRow);
-                //             axios.put(`${api}${updatedRow.id}`, updatedRow)
-                //                 .then(() => {
-                //                     // resolve()
-                //                     setTimeout(() => {
-                //                         setData(data.map(row => (row.id === updatedRow.id ? updatedRow : row)));
-                //                         // fetchData();
-                //                         resolve();
-                //                     }, 2000);
-                //                 })
-                //                 .catch(error => {
-                //                     console.error('Error updating users:', error);
-                //                     reject();
-                //                 });
-                //         });
-                //     }
-                // }}
-                editable={{
-                    onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve) => {
-                            handleRowUpdate(newData, oldData, resolve);
+        </Box>
 
-                        }),
-                    onRowAdd: (newData) =>
-                        new Promise((resolve) => {
-                            handleRowAdd(newData, resolve)
-                        }),
-                    onRowDelete: (oldData) =>
-                        new Promise((resolve) => {
-                            handleRowDelete(oldData, resolve)
-                        }),
-                }}
-
-            />
-        </div>
     );
 }
 export default Table;
