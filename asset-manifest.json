@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mt-ui/static/css/main.7b0fedd5.css",
-    "main.js": "/mt-ui/static/js/main.dd1951e5.js",
+    "main.js": "/mt-ui/static/js/main.273f06c9.js",
     "static/js/52.390050b1.chunk.js": "/mt-ui/static/js/52.390050b1.chunk.js",
     "static/js/760.b3735c9c.chunk.js": "/mt-ui/static/js/760.b3735c9c.chunk.js",
     "static/js/239.7e9289be.chunk.js": "/mt-ui/static/js/239.7e9289be.chunk.js",
@@ -10,6 +10,6 @@
   },
   "entrypoints": [
     "static/css/main.7b0fedd5.css",
-    "static/js/main.dd1951e5.js"
+    "static/js/main.273f06c9.js"
   ]
 }
