@@ -192,7 +192,7 @@ function Table() {
             .catch(error => {
                 console.log("Error")
             })
-    }, [])
+    }, );
 
     const [searchText, setSearchText] = useState('');
     const handleRowUpdate = (newData, oldData, resolve) => {
