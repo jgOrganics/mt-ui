@@ -181,7 +181,6 @@ function Table() {
 
     const [iserror, setIserror] = useState(false);
     const [errorMessages, setErrorMessages] = useState([]);
-    const [isEditClicked, setIsEditClicked] = useState(false); // state to track whether edit button is clicked or not
 
     useEffect(() => {
         api.get("/users")
@@ -190,9 +189,9 @@ function Table() {
                 setData(res.data);
             })
             .catch(error => {
-                console.log("Error")
+                console.log("Error");
             })
-    }, );
+    },[] );
 
     const [searchText, setSearchText] = useState('');
     const handleRowUpdate = (newData, oldData, resolve) => {
@@ -453,15 +452,7 @@ function Table() {
                                 handleRowDelete(oldData, resolve)
                             }),
                     }}
-                    actions={[
-                        {
-                            icon: Edit,
-                            tooltip: 'Edit User',
-                            onClick: (event, rowData) => {
-                                setIsEditClicked(!isEditClicked);
-                            }
-                        }
-                    ]}
+       
                 />
             </Box>
 
