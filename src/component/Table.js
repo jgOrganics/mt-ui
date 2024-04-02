@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { forwardRef } from 'react';
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
@@ -16,20 +16,16 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import axios from 'axios'
 import { Alert, TextField } from '@mui/material';
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
-// import { Group } from '@material-ui/icons';
 import GroupIcon from '@mui/icons-material/Group';
 import { useTheme } from '../contexts/ThemeContext';
 import ToggleThemeButton from './Toggle';
+import axios from 'axios';
 
 function Table() {
     const { darkMode } = useTheme();
-    // const [showTextFields, setShowTextFields] = useState(false); // state to control the visibility of text fields
-
     const tableIcons = {
-
         Add: forwardRef((props, ref) => <AddBox
             {...props}
             ref={ref}
@@ -85,7 +81,6 @@ function Table() {
             style={{ color: darkMode ? '#fff' : '#222', }}
             {...props} ref={ref} />)
     };
-
     var columns = [
         { title: "id", field: "id", hidden: true, editable: false },
         {
@@ -152,6 +147,10 @@ function Table() {
     ]
 
     const [data, setData] = useState([]); //table data
+    const [iserror, setIserror] = useState(false);
+    const [errorMessages, setErrorMessages] = useState([]);
+    const [searchText, setSearchText] = useState('');
+
     const api = axios.create({
         baseURL: `http://localhost:3005`
     })
@@ -179,9 +178,6 @@ function Table() {
         return re.test(email);
     }
 
-    const [iserror, setIserror] = useState(false);
-    const [errorMessages, setErrorMessages] = useState([]);
-
     useEffect(() => {
         api.get("/users")
             .then(res => {
@@ -191,9 +187,7 @@ function Table() {
             .catch(error => {
                 console.log("Error");
             })
-    },[] );
-
-    const [searchText, setSearchText] = useState('');
+    }, []);
     const handleRowUpdate = (newData, oldData, resolve) => {
         //validation
         let errorList = []
@@ -232,7 +226,6 @@ function Table() {
             resolve()
         }
     }
-
     const handleRowAdd = (newData, resolve) => {
         //validation
         let errorList = []
@@ -269,7 +262,6 @@ function Table() {
             resolve()
         }
     }
-
     const handleRowDelete = (oldData, resolve) => {
         api.delete("/users/" + oldData.id)
             .then(res => {
@@ -285,7 +277,6 @@ function Table() {
                 resolve()
             })
     }
-
     const handleSearchChange = (event) => {
         setSearchText(event.target.value);
     };
@@ -310,8 +301,7 @@ function Table() {
                     backgroundColor: darkMode ? '#222' : 'skyblue',
                     color: darkMode ? '#222' : '#fff'
                 }}
-                variant='outlined'
-            >
+                variant='outlined' >
                 <Toolbar >
                     <GroupIcon
                         style={{
@@ -327,7 +317,6 @@ function Table() {
                         }}>
                         USERS
                     </Typography>
-
                     <TextField
                         label="Search"
                         variant="outlined"
@@ -335,7 +324,6 @@ function Table() {
                         onChange={handleSearchChange}
                         sx={{ width: '300px' }}
                         InputLabelProps={{ style: { color: darkMode ? '#fff' : '#222' } }} // Set label color here
-
                         style={{
                             borderColor: darkMode ? '#fff' : '#222',
                             color: darkMode ? '#fff' : '#222',
@@ -345,8 +333,7 @@ function Table() {
                     <IconButton
                         style={{
                             marginTop: 10
-                        }}
-                    >
+                        }}>
                         <Button
                             style={{
                                 color: darkMode ? '#fff' : '#222'
@@ -354,17 +341,6 @@ function Table() {
                             variant='outlined'
                             size='25px'
                         >Login</Button>
-                    </IconButton>
-                    <IconButton
-                        style={{
-                            marginTop: 10
-                        }}
-                    // onClick={{  }}
-                    >
-                        {/* <IconButton onClick={toggleThemeMode} sx={{ position: 'fixed', top: '10px', right: '10px' }}>
-                            {themeMode === 'light' ? <DarkIcon /> : <LightIcon />}
-                        </IconButton> */}
-
                     </IconButton>
                     <ToggleThemeButton />
                 </Toolbar>
@@ -378,7 +354,6 @@ function Table() {
                             })}
                         </Alert>
                     }
-
                 </div>
                 <MaterialTable
                     style={tableStyles}
@@ -414,29 +389,7 @@ function Table() {
                             color: darkMode ? 'lightblue' : '#222',
 
                         },
-
                     }}
-                    // cellEditable={{
-                    //     onCellEditApproved: async (newData, oldData, rowData, columnDef) => {
-                    //         return new Promise((resolve, reject) => {
-                    //             const updatedRow = { ...rowData, [columnDef.field]: newData };
-                    //             console.log(updatedRow);
-                    //             axios.put(`${api}${updatedRow.id}`, updatedRow)
-                    //                 .then(() => {
-                    //                     // resolve()
-                    //                     setTimeout(() => {
-                    //                         setData(data.map(row => (row.id === updatedRow.id ? updatedRow : row)));
-                    //                         // fetchData();
-                    //                         resolve();
-                    //                     }, 2000);
-                    //                 })
-                    //                 .catch(error => {
-                    //                     console.error('Error updating users:', error);
-                    //                     reject();
-                    //                 });
-                    //         });
-                    //     }
-                    // }}
                     editable={{
                         onRowUpdate: (newData, oldData) =>
                             new Promise((resolve) => {
@@ -452,12 +405,9 @@ function Table() {
                                 handleRowDelete(oldData, resolve)
                             }),
                     }}
-       
                 />
             </Box>
-
         </Box>
-
     );
 }
 export default Table;

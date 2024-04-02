@@ -3,7 +3,7 @@
     {
       "id": "1",
       "email": "john@mail.com",
-      "password": "dontchange",
+      "password": "John@123",
       "name": "Johny",
       "role": "customer",
       "avatar": "https://i.imgur.com/LDOO4Qs.jpg",
@@ -13,7 +13,7 @@
     {
       "id": "2",
       "email": "maria@mail.com",
-      "password": "12345",
+      "password": "Ravi123@",
       "name": "Maria",
       "role": "customer",
       "avatar": "https://i.imgur.com/DTfowdu.jpg",
