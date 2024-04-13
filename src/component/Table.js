@@ -152,7 +152,7 @@ function Table() {
     const [searchText, setSearchText] = useState('');
 
     const api = axios.create({
-        baseURL: `http://localhost:3005`
+        baseURL: `http://localhost:3000`
     })
     function validatePassword(password) {
         // Password must be at least 8 characters long
