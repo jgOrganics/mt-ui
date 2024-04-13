@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mt-ui/static/css/main.7b0fedd5.css",
-    "main.js": "/mt-ui/static/js/main.273f06c9.js",
-    "static/js/52.390050b1.chunk.js": "/mt-ui/static/js/52.390050b1.chunk.js",
-    "static/js/760.b3735c9c.chunk.js": "/mt-ui/static/js/760.b3735c9c.chunk.js",
-    "static/js/239.7e9289be.chunk.js": "/mt-ui/static/js/239.7e9289be.chunk.js",
-    "static/js/206.68d92c82.chunk.js": "/mt-ui/static/js/206.68d92c82.chunk.js",
-    "index.html": "/mt-ui/index.html"
+    "main.css": "/Tree-Plantation-App/static/css/main.7b0fedd5.css",
+    "main.js": "/Tree-Plantation-App/static/js/main.a7233c0c.js",
+    "static/js/52.390050b1.chunk.js": "/Tree-Plantation-App/static/js/52.390050b1.chunk.js",
+    "static/js/760.b3735c9c.chunk.js": "/Tree-Plantation-App/static/js/760.b3735c9c.chunk.js",
+    "static/js/239.7e9289be.chunk.js": "/Tree-Plantation-App/static/js/239.7e9289be.chunk.js",
+    "static/js/206.68d92c82.chunk.js": "/Tree-Plantation-App/static/js/206.68d92c82.chunk.js",
+    "index.html": "/Tree-Plantation-App/index.html"
   },
   "entrypoints": [
     "static/css/main.7b0fedd5.css",
-    "static/js/main.273f06c9.js"
+    "static/js/main.a7233c0c.js"
   ]
 }
